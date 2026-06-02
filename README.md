@@ -12,7 +12,7 @@ Recreated from a [Claude Design](https://claude.ai/design) handoff bundle.
 | Route    | Screen          | What it shows |
 | -------- | --------------- | ------------- |
 | `/`      | **Left TV**     | **Drinks menu** — a single static 4K board: fresh brewed, espresso, iced, frappes, specials, plus a featured "Exotic Hand Made Drip" box and a rotating "Featured today" ticker. |
-| `/beans` | **Right TV**    | **Coffee beans** (112 single-origin / blends / decaf, by the pound) — an auto-rotating board that cycles through 6 large, legible category pages every 10s. |
+| `/beans` | **Right TV**    | **Coffee beans** (105 single-origin / blends / decaf, by the pound) — an auto-rotating board that cycles through 6 large, legible category pages every 10s. |
 
 Both boards share one visual system: the roasted-bean background, a soft feathered
 cream wash that lifts the text, a centered logo masthead, a live clock + "Open"
@@ -61,7 +61,7 @@ app/
     BeansBoard.tsx        # beans board (paged + auto-rotate)
   lib/
     menuData.ts           # drinks menu data (MENU)
-    beansData.ts          # 112 beans (BEANS)
+    beansData.ts          # 105 beans (BEANS_MENU + BEANS lookup)
 public/assets/            # bg.png (bean background), logo.webp
 ```
 

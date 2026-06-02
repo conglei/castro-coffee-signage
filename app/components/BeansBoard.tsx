@@ -75,16 +75,19 @@ const SECTION_NOTES: Record<string, string> = {
 };
 
 /* ───────── rows ───────── */
+// CSS roast-dot class: medium = bronze (M), dark = espresso (D).
+const roastCode = (b: Bean) => (b.roast === "Dark" ? "D" : "M");
+
 function BeanRow({ item, featured, lead }: { item: Bean; featured?: boolean; lead?: boolean }) {
   return (
     <div className="brow">
-      <span className={"dot " + item.r} title={item.r === "D" ? "Dark roast" : "Medium roast"} />
+      <span className={"dot " + roastCode(item)} title={`${item.roast} roast`} />
       <span className="bn">
-        {item.n}
-        {featured && item.b && <span className="tag">{item.b}</span>}
+        {item.name}
+        {featured && item.badge && <span className="tag">{item.badge}</span>}
       </span>
       {(featured || lead) && <span className="leader" />}
-      <span className="bp">{price(item.p)}</span>
+      <span className="bp">{price(item.price)}</span>
     </div>
   );
 }
@@ -97,13 +100,13 @@ function PageContent({ page }: { page: Page }) {
       <div className="showcase">
         {items.map((it, i) => (
           <div className="show-item" key={i}>
-            <span className={"dot " + it.r} style={{ width: "26px", height: "26px", alignSelf: "center" }} />
+            <span className={"dot " + roastCode(it)} style={{ width: "26px", height: "26px", alignSelf: "center" }} />
             <div className="si-main">
-              <span className="si-name">{it.n.replace(" ( Special Order )", "")}</span>
-              {it.o && <span className="si-orig">{it.o}</span>}
+              <span className="si-name">{it.name.replace(" ( Special Order )", "")}</span>
+              {it.origin && <span className="si-orig">{it.origin}</span>}
             </div>
-            {it.b && <span className="tag si-badge">{it.b}</span>}
-            <span className="si-price">{price(it.p)}</span>
+            {it.badge && <span className="tag si-badge">{it.badge}</span>}
+            <span className="si-price">{price(it.price)}</span>
           </div>
         ))}
       </div>
