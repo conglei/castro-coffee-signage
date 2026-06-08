@@ -4,13 +4,20 @@
 // Ported from the design handoff (beans-app.jsx). Auto-rotating "pages", one
 // category shown large at a time. Final tweak values baked in; Tweaks panel removed.
 
-import { Fragment, useEffect, useRef, useState, type CSSProperties } from "react";
-import { BEANS, type Bean } from "../lib/beansData";
+import { createContext, Fragment, useContext, useEffect, useRef, useState, type CSSProperties } from "react";
+import { BEANS, BEANS_MENU, type Bean, type BeansMenu } from "../lib/beansData";
 import { BrandArcs, Clock, boardVars, useFitToViewport, TYPE_PAIRS, type Theme } from "./boardChrome";
 import { useTweaks } from "../lib/useTweaks";
 import { TweaksPanel } from "./tweaks/TweaksPanel";
 import { TweakSection, TweakRadio, TweakSelect, TweakSlider, TweakColor, TweakToggle } from "./tweaks/controls";
 import { BoardSwitch } from "./BoardSwitch";
+import { RefreshButton } from "./RefreshButton";
+
+// Live beans lookup (section name → beans), provided by BeansBoard so the
+// Refresh button can swap in fresh sheet data without prop-drilling.
+const BeansContext = createContext<Record<string, Bean[]>>(BEANS);
+const toLookup = (m: BeansMenu): Record<string, Bean[]> =>
+  Object.fromEntries(m.sections.map((s) => [s.name, s.items]));
 
 interface BeansTheme extends Theme {
   view: "paged" | "full";
@@ -94,8 +101,9 @@ function BeanRow({ item, featured, lead }: { item: Bean; featured?: boolean; lea
 
 /* ───────── paged view ───────── */
 function PageContent({ page }: { page: Page }) {
+  const beans = useContext(BeansContext);
   if (page.showcase) {
-    const items = page.groups.flatMap((g) => BEANS[g] || []);
+    const items = page.groups.flatMap((g) => beans[g] || []);
     return (
       <div className="showcase">
         {items.map((it, i) => (
@@ -119,7 +127,7 @@ function PageContent({ page }: { page: Page }) {
         {page.groups.map((g) => (
           <Fragment key={g}>
             {multi && <div className="glabel">{g}</div>}
-            {(BEANS[g] || []).map((it, i) => (
+            {(beans[g] || []).map((it, i) => (
               <BeanRow key={g + i} item={it} lead />
             ))}
           </Fragment>
@@ -130,8 +138,9 @@ function PageContent({ page }: { page: Page }) {
 }
 
 function PagedView({ idx }: { idx: number }) {
+  const beans = useContext(BeansContext);
   const page = PAGES[idx];
-  const count = page.groups.reduce((n, g) => n + (BEANS[g] || []).length, 0);
+  const count = page.groups.reduce((n, g) => n + (beans[g] || []).length, 0);
   return (
     <div className="pages">
       <div className="page" key={idx}>
@@ -162,7 +171,8 @@ function Pager({ idx, go }: { idx: number; go: (i: number) => void }) {
 
 /* ───────── full (dense) view ───────── */
 function BeanSection({ name, featured }: { name: string; featured?: boolean }) {
-  const items = BEANS[name] || [];
+  const beans = useContext(BeansContext);
+  const items = beans[name] || [];
   return (
     <section className={"sec" + (featured ? " featured" : "")} data-id={name}>
       <header className="sec-h">
@@ -257,9 +267,12 @@ const ACCENTS = ["#95652E", "#5A3A22", "#A0451F", "#6E5A2B"];
 
 export default function BeansBoard() {
   const [t, setTweak] = useTweaks(BEANS_DEFAULTS, "castro.beans");
+  const [beans, setBeans] = useState<Record<string, Bean[]>>(BEANS);
   return (
+    <BeansContext.Provider value={beans}>
     <div id="stage">
       <Board t={t} />
+      <RefreshButton<BeansMenu> board="beans" onData={(m) => setBeans(toLookup(m))} />
       <BoardSwitch href="/" label="Drinks Menu" />
       <TweaksPanel onReset={() => setTweak(BEANS_DEFAULTS)}>
         <TweakSection label="Display" />
@@ -292,5 +305,6 @@ export default function BeansBoard() {
         <TweakToggle label="Ambient motion" value={t.motion} onChange={(v) => setTweak("motion", v)} />
       </TweaksPanel>
     </div>
+    </BeansContext.Provider>
   );
 }

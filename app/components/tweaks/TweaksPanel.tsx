@@ -42,6 +42,9 @@ export function TweaksPanel({
   useEffect(() => {
     if (!open) return;
     clampToViewport();
+    // Remote/keyboard: land focus on the first body control (not the close ✕)
+    // so Up/Down can take over immediately.
+    dragRef.current?.querySelector<HTMLElement>(".twk-body [data-twk-nav]")?.focus();
     if (typeof ResizeObserver === "undefined") {
       window.addEventListener("resize", clampToViewport);
       return () => window.removeEventListener("resize", clampToViewport);
@@ -50,6 +53,22 @@ export function TweaksPanel({
     ro.observe(document.documentElement);
     return () => ro.disconnect();
   }, [open, clampToViewport]);
+
+  // D-pad row navigation: Up/Down move focus between controls, Esc closes.
+  // (Left/Right/Enter are handled by the focused control itself.)
+  const onPanelKey = (e: React.KeyboardEvent) => {
+    if (e.key === "Escape") { setOpen(false); return; }
+    if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+    const items = Array.from(
+      dragRef.current?.querySelectorAll<HTMLElement>("[data-twk-nav]") ?? [],
+    );
+    if (!items.length) return;
+    const cur = items.indexOf(document.activeElement as HTMLElement);
+    const next = (cur + (e.key === "ArrowDown" ? 1 : -1) + items.length) % items.length;
+    items[next].focus();
+    items[next].scrollIntoView({ block: "nearest" });
+    e.preventDefault();
+  };
 
   // `t` toggles the panel (ignored while typing in a field).
   useEffect(() => {
@@ -107,11 +126,13 @@ export function TweaksPanel({
       ref={dragRef}
       className="twk-panel"
       style={{ right: offsetRef.current.x, bottom: offsetRef.current.y }}
+      onKeyDown={onPanelKey}
     >
       <div className="twk-hd" onMouseDown={onDragStart}>
         <b>{title}</b>
         <button
           className="twk-x"
+          data-twk-nav
           aria-label="Close tweaks"
           onMouseDown={(e) => e.stopPropagation()}
           onClick={() => setOpen(false)}
@@ -126,6 +147,9 @@ export function TweaksPanel({
             <TweakButton label="Reset to defaults" secondary onClick={onReset} />
           </div>
         )}
+        <div className="twk-hint" aria-hidden="true">
+          ▲▼ move · ◀▶ adjust · OK toggle · Back close
+        </div>
       </div>
     </div>
   );

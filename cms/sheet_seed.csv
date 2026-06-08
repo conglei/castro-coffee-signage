@@ -1,0 +1,106 @@
+section,available,name,roast,origin,badge,price
+House & Medium Blends,yes,California Blend,Medium,,,13.95
+House & Medium Blends,yes,Castro Breakfast-Blend,Medium,,,12.50
+House & Medium Blends,yes,House Blend,Medium,,,13.95
+House & Medium Blends,yes,House Sumatra Medium,Medium,Sumatra,,12.50
+House & Medium Blends,yes,Morning Rush,Medium,,,12.50
+House & Medium Blends,yes,North Beach,Medium,,,12.50
+House & Medium Blends,yes,SF Breakfast,Medium,,,13.95
+House & Medium Blends,yes,Sweet Italian,Medium,,,13.95
+House & Medium Blends,yes,Viennese Blend,Medium,,,12.95
+House & Medium Blends,yes,Arabic Blend #1,Medium,,,13.95
+Single-Origin,yes,Brazil Bourbon Santos,Medium,Brazil,,13.95
+Single-Origin,yes,Colombian,Medium,Colombia,,12.50
+Single-Origin,yes,Colombian Supremo,Medium,Colombia,,13.95
+Single-Origin,yes,Costa Rica Tarrazu,Medium,Costa Rica,,13.95
+Single-Origin,yes,Ethiopian Harrar,Dark,Ethiopia,,17.95
+Single-Origin,yes,Ethiopian Moka,Medium,Ethiopia,,14.95
+Single-Origin,yes,Ethiopian Mystic Lion,Medium,Ethiopia,,14.50
+Single-Origin,yes,Ethiopian Yirgacheffe,Medium,Ethiopia,,17.95
+Single-Origin,yes,Guatemala Antigua,Medium,Guatemala,,13.95
+Single-Origin,yes,Guatemala Dark,Dark,Guatemala,,12.50
+Single-Origin,yes,Hawaiian Golden Kona,Medium,Hawaii,,16.75
+Single-Origin,yes,Indian Monsoon,Medium,India,,19.00
+Single-Origin,yes,Kenya AA,Medium,Kenya,,19.50
+Single-Origin,yes,Mexican Altura,Medium,Mexico,,12.50
+Single-Origin,yes,Moka Java,Medium,Ethiopia,,13.95
+Single-Origin,yes,Moka Java dark,Dark,Ethiopia,,12.95
+Single-Origin,yes,New Guinea Reserve,Medium,Papua New Guinea,,16.50
+Single-Origin,yes,Nicaraguan Estate,Medium,Nicaragua,,12.50
+Single-Origin,yes,Sumatra Mandheling dark,Dark,Sumatra,,13.95
+Single-Origin,yes,Tanzania Peaberry,Medium,Tanzania,,13.95
+Single-Origin,yes,Yemen Mocca hawari,Medium,Yemen,,24.95
+Dark Roasts,yes,Barbary Coast,Dark,,,15.50
+Dark Roasts,yes,Berkeley's Blend,Dark,,,13.95
+Dark Roasts,yes,Castro Double Feature,Dark,,,13.95
+Dark Roasts,yes,European Royale,Dark,,,13.95
+Dark Roasts,yes,Fog Lifter,Dark,,,13.95
+Dark Roasts,yes,French Roast,Dark,,,12.50
+Dark Roasts,yes,French Roast Classic,Dark,,,12.25
+Dark Roasts,yes,French/Italian,Dark,,,12.50
+Dark Roasts,yes,Italian Roast Classic,Dark,,,13.95
+Dark Roasts,yes,Joe Black,Dark,,,15.95
+Dark Roasts,yes,Majestic Blend,Dark,,,14.75
+Dark Roasts,yes,Midnight French,Dark,,,13.95
+Dark Roasts,yes,Millenium Joe,Dark,,,17.50
+Dark Roasts,yes,Red Sea Blend,Dark,,,15.50
+Dark Roasts,yes,Rivera French,Dark,,,13.95
+Dark Roasts,yes,Road Warrior Blend,Dark,,,17.50
+Dark Roasts,yes,SF Sunshine,Dark,,,17.50
+Dark Roasts,yes,Triple Dark,Dark,,,13.92
+Dark Roasts,yes,Vienna Dark Roast,Dark,,,12.50
+Dark Roasts,yes,Presidio Dark,Dark,,,14.95
+Espresso Blends,yes,Espresso Royale,Dark,,,13.95
+Espresso Blends,yes,Espresso Ultima,Dark,,,13.95
+Espresso Blends,yes,Malabar Gold,Dark,India,,20.00
+Espresso Blends,yes,Rocket Espresso,Dark,,,17.50
+Flavored,yes,Amaretto,Medium,,,14.50
+Flavored,yes,Banana Cream,Medium,,,13.95
+Flavored,yes,Caramel Cream,Medium,,,13.95
+Flavored,yes,Chocolate Mint,Medium,,,13.95
+Flavored,yes,Chocolate Raspberry,Medium,,,13.50
+Flavored,yes,Cinnamon Frangelico,Medium,,,13.95
+Flavored,yes,Dark Chocolate Truffle,Medium,,,13.95
+Flavored,yes,French Vanilla,Medium,,,11.95
+Flavored,yes,Hawaiian Coconut,Medium,Hawaii,,13.95
+Flavored,yes,Hazelnut,Medium,,,12.95
+Flavored,yes,Irish Cream,Medium,,,12.95
+Flavored,yes,Kona Macadamia,Medium,Hawaii,,13.95
+Flavored,yes,Mandarin Orange,Medium,,,13.95
+Flavored,yes,Southern Pecan,Medium,,,13.95
+Flavored,yes,Torani Syrup,Medium,,,11.49
+Flavored,yes,Vanilla Nut Cream,Medium,,,12.95
+Flavored,yes,Bourbon Pecan,Medium,,,14.50
+Flavored,yes,Chocolate Almond,Medium,,,14.50
+Flavored,yes,Chocolate Avalanche,Medium,,,14.50
+Flavored,yes,Wild Blueberry,Medium,,,14.50
+Organic & Fair Trade,yes,Organic Bali blue moon,Dark,Indonesia,Organic,17.75
+Organic & Fair Trade,yes,Organic Celebes,Medium,Indonesia,Organic,16.50
+Organic & Fair Trade,yes,Organic French,Dark,,Organic,17.50
+Organic & Fair Trade,yes,Organic Mexican,Medium,Mexico,Organic,17.50
+Organic & Fair Trade,yes,Organic Peru,Medium,Peru,Organic,17.50
+Organic & Fair Trade,yes,Organic Sumatra,Dark,Sumatra,Organic,17.50
+Decaf,yes,Decaf Cinnamon,Medium,,,15.50
+Decaf,yes,Decaf Colombian,Medium,Colombia,,14.95
+Decaf,yes,Decaf Costa Rica,Medium,Costa Rica,,14.95
+Decaf,yes,Decaf Ethopian,Medium,,,14.95
+Decaf,yes,Decaf French Roast,Dark,,,14.95
+Decaf,yes,Decaf Guatemala,Medium,Guatemala,,14.95
+Decaf,yes,Decaf Moka Java,Medium,Ethiopia,,14.95
+Decaf,yes,Decaf Royale,Medium,,,14.50
+Decaf,yes,Decaf Vienna,Dark,,,14.95
+Decaf,yes,Decaf Amaretto,Medium,,,14.50
+Decaf,yes,Decaf Arabic Blend/Cardamom,Medium,,,14.95
+Decaf,yes,Decaf Castro Breakfast,Medium,,,14.75
+Decaf,yes,Decaf European Royale,Dark,,,14.75
+Decaf,yes,Decaf Italian Roast,Dark,,,14.95
+Decaf,yes,Decaf Morning Rush,Medium,,,14.95
+Decaf,yes,Decaf Sweet Italian,Medium,,,14.75
+Decaf,yes,Fair Trade Organic Decaf (SWP) Italian Roast,Dark,,Organic,16.95
+Decaf,yes,Fair Trade Organic Decaf (SWP) French Roast,Dark,,Organic,16.95
+Rare & Reserve,yes,Aroma Di Napoli,Dark,,Reserve,39.00
+Rare & Reserve,yes,Geisha Esmeralda,Medium,Panama,Rare,125.00
+Rare & Reserve,yes,Hawaiian Fancy Kona,Medium,Hawaii,Reserve,80.00
+Rare & Reserve,yes,Jamaican Blue Mountain,Medium,Jamaica,Reserve,95.00
+Rare & Reserve,yes,Kopi Luwak ( Special Order ),Medium,Indonesia/Civet,Rare,695.00
+Rare & Reserve,yes,Le Eseralda Geisha,Medium,Panama,Rare,175.00

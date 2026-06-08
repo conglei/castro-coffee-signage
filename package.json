@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "menu": "node scripts/build-menu.mjs",
+    "drinks": "node scripts/build-drinks.mjs",
+    "prebuild": "node scripts/build-menu.mjs && node scripts/build-drinks.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

@@ -5,12 +5,13 @@
 // baked in and the design-time Tweaks panel removed.
 
 import { useEffect, useRef, useState } from "react";
-import { MENU, type Section, type MenuItem } from "../lib/menuData";
+import { MENU, type Menu, type Section, type MenuItem } from "../lib/menuData";
 import { BrandArcs, Clock, boardVars, useFitToViewport, TYPE_PAIRS, type Theme } from "./boardChrome";
 import { useTweaks } from "../lib/useTweaks";
 import { TweaksPanel } from "./tweaks/TweaksPanel";
 import { TweakSection, TweakRadio, TweakSelect, TweakSlider, TweakColor, TweakToggle } from "./tweaks/controls";
 import { BoardSwitch } from "./BoardSwitch";
+import { RefreshButton } from "./RefreshButton";
 
 interface DrinksTheme extends Theme {
   layout: "columns" | "featured" | "framed";
@@ -225,14 +226,14 @@ function SectionView({ s }: { s: Section }) {
 const COLS = ["colA", "colB", "colC", "colD"] as const;
 
 /* Featured layout: exotic band across top, rest in 4 balanced columns. */
-function FeaturedLayout() {
+function FeaturedLayout({ menu }: { menu: Menu }) {
   const byId: Record<string, Section> = {};
-  COLS.forEach((c) => MENU[c].forEach((s) => (byId[s.id] = s)));
+  COLS.forEach((c) => menu[c].forEach((s) => (byId[s.id] = s)));
   const exotic = byId["exotic"];
   const cols: Section[][] = [
     [byId["fresh"], byId["turkish"], byId["hot-chocolate"]],
-    MENU.colB,
-    MENU.colC,
+    menu.colB,
+    menu.colC,
     [byId["cold-brew"], byId["matcha"], byId["vietnamese"], byId["refreshers"]],
   ];
   return (
@@ -267,7 +268,7 @@ function FeaturedLayout() {
   );
 }
 
-function Board({ t }: { t: DrinksTheme }) {
+function Board({ t, menu }: { t: DrinksTheme; menu: Menu }) {
   const boardRef = useRef<HTMLDivElement>(null);
   useFitToViewport(boardRef);
 
@@ -298,12 +299,12 @@ function Board({ t }: { t: DrinksTheme }) {
         </header>
 
         {t.layout === "featured" ? (
-          <FeaturedLayout />
+          <FeaturedLayout menu={menu} />
         ) : (
           <div className="grid">
             {COLS.map((c) => (
               <div className="col" key={c}>
-                {MENU[c].map((s) => (
+                {menu[c].map((s) => (
                   <SectionView key={s.id} s={s} />
                 ))}
               </div>
@@ -320,9 +321,11 @@ const ACCENTS = ["#95652E", "#5A3A22", "#A0451F", "#6E5A2B"];
 
 export default function CoffeeBoard() {
   const [t, setTweak] = useTweaks(DRINKS_DEFAULTS, "castro.drinks");
+  const [menu, setMenu] = useState<Menu>(MENU);
   return (
     <div id="stage">
-      <Board t={t} />
+      <Board t={t} menu={menu} />
+      <RefreshButton<Menu> board="drinks" onData={setMenu} />
       <BoardSwitch href="/beans" label="Coffee Beans" />
       <TweaksPanel onReset={() => setTweak(DRINKS_DEFAULTS)}>
         <TweakSection label="Layout direction" />

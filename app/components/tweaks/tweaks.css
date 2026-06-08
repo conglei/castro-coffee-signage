@@ -43,13 +43,34 @@
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='rgba(0,0,0,.5)' d='M0 0h10L5 6z'/></svg>");
     background-repeat:no-repeat;background-position:right 8px center}
 
-  .twk-slider{appearance:none;-webkit-appearance:none;width:100%;height:4px;margin:6px 0;
-    border-radius:999px;background:rgba(0,0,0,.12);outline:none}
-  .twk-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
-    width:14px;height:14px;border-radius:50%;background:#fff;
-    border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
-  .twk-slider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;
-    background:#fff;border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+  /* Stepper (remote: ◀ ▶ adjust; mouse: −/＋) */
+  .twk-stepper{display:flex;align-items:center;gap:8px;height:30px;padding:0 4px;
+    border-radius:8px;background:rgba(0,0,0,.06);outline:none}
+  .twk-step{appearance:none;flex:0 0 auto;width:26px;height:22px;border:0;border-radius:6px;
+    background:rgba(255,255,255,.7);color:inherit;font:inherit;font-size:15px;line-height:1;
+    cursor:default;display:flex;align-items:center;justify-content:center}
+  .twk-step:hover{background:#fff}
+  .twk-step:disabled{opacity:.35}
+  .twk-stepbar{flex:1;height:4px;border-radius:999px;background:rgba(0,0,0,.12);overflow:hidden}
+  .twk-stepbar i{display:block;height:100%;border-radius:999px;background:rgba(41,38,27,.55)}
+
+  /* Cycler (remote: ◀ ▶ change; mouse: ‹ ›) — replaces native dropdown */
+  .twk-cycler{display:flex;align-items:center;gap:4px;height:30px;padding:0 4px;
+    border-radius:8px;background:rgba(0,0,0,.06);outline:none}
+  .twk-cyc-arrow{appearance:none;flex:0 0 auto;width:24px;height:22px;border:0;border-radius:6px;
+    background:rgba(255,255,255,.7);color:inherit;font:inherit;font-size:15px;line-height:1;
+    cursor:default;display:flex;align-items:center;justify-content:center}
+  .twk-cyc-arrow:hover{background:#fff}
+  .twk-cyc-val{flex:1;text-align:center;font-weight:500;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+  /* Focus highlight — must be obvious from across the room on a TV */
+  [data-twk-nav]{scroll-margin:8px;transition:box-shadow .12s,background-color .12s}
+  [data-twk-nav]:focus{outline:none}
+  [data-twk-nav]:focus-visible,.twk-panel [data-twk-nav]:focus{
+    box-shadow:0 0 0 2px rgba(255,255,255,.9),0 0 0 4px var(--accent,#95652E)}
+  .twk-row-h.twk-nav{border-radius:8px;padding:4px 6px;margin:-4px -6px;cursor:default}
+  .twk-row-h.twk-nav:focus-visible{background:rgba(0,0,0,.04)}
 
   .twk-seg{position:relative;display:flex;padding:2px;border-radius:8px;
     background:rgba(0,0,0,.06);user-select:none}
@@ -120,3 +141,5 @@
 .twk-fab svg{width:20px;height:20px}
 .twk-foot{display:flex;gap:8px;padding-top:6px}
 .twk-foot .twk-btn{flex:1}
+.twk-hint{margin-top:4px;text-align:center;font-size:9.5px;letter-spacing:.02em;
+  color:rgba(41,38,27,.4);user-select:none}
