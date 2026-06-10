@@ -8,7 +8,7 @@
 //     sheet schema (col, section_id, …, kind, name, …, size1/price1…size3/price3)
 //     and must emit the same JSON, or the live refresh will differ from the build.
 
-import type { Menu, Section, MenuItem, AddOn } from "./menuData";
+import type { Menu, Section, MenuItem, AddOn, SectionVariant } from "./menuData";
 
 type Row = Record<string, string>;
 
@@ -61,6 +61,23 @@ function pairs(o: Row): Record<string, number> {
   return out;
 }
 
+// Allowed explicit render styles (sheet `section_style` column). Anything else
+// is ignored so the renderer falls back to inferring the style from the data.
+const VARIANTS = new Set<SectionVariant>(["aligned", "inline", "leader", "desc", "flavors"]);
+
+// Build a regular item from a row, keeping every field it actually has — shape-
+// driven, not kind-driven, so a description row can also carry a price. size/
+// price pairs win over a single price1 when both are present.
+function buildItem(r: Row): MenuItem {
+  const item: MenuItem = { name: r.name };
+  if (r.desc) item.desc = r.desc;
+  if (r.tag) item.tag = r.tag;
+  const pr = pairs(r);
+  if (Object.keys(pr).length) item.prices = pr;
+  else { const p = num(r.price1); if (p != null) item.price = p; }
+  return item;
+}
+
 const SHOP_NAME = "Castro Coffee Company";
 
 /**
@@ -97,6 +114,8 @@ export function parseDrinksCsv(text: string): Menu {
     if (meta.section_note) section.note = meta.section_note;
     if (meta.section_desc) section.desc = meta.section_desc;
     if (truthy(meta.featured)) section.featured = true;
+    const style = (meta.section_style || "").trim().toLowerCase() as SectionVariant;
+    if (VARIANTS.has(style)) section.variant = style;
     if (meta.section_sizes) section.sizes = meta.section_sizes.split("|").map((s) => s.trim()).filter(Boolean);
 
     const items: MenuItem[] = [];
@@ -109,9 +128,8 @@ export function parseDrinksCsv(text: string): Menu {
         case "uniform": uniform = pairs(r); break;
         case "flavor": if (r.name) flavors.push(r.name); break;
         case "addon": { const p = num(r.price1); if (r.name && p != null) addOns.push({ name: r.name, price: p }); break; }
-        case "desc": if (r.name) items.push({ name: r.name, ...(r.desc ? { desc: r.desc } : {}) }); break;
-        case "single": { const p = num(r.price1); if (r.name && p != null) items.push({ name: r.name, price: p, ...(r.tag ? { tag: r.tag } : {}) }); break; }
-        default: { const pr = pairs(r); if (r.name && Object.keys(pr).length) items.push({ name: r.name, prices: pr }); }
+        // item / single / desc — all regular items, captured by data shape.
+        default: if (r.name) items.push(buildItem(r));
       }
     }
 

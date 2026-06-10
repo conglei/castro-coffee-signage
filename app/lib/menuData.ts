@@ -25,12 +25,23 @@ export interface AddOn {
   price: number;
 }
 
+// How a section's items are laid out. Either set explicitly from the sheet
+// (`section_style` column) or inferred from the data shape (see inferVariant).
+//   aligned — shared sizes shown as aligned price columns (most sections)
+//   inline  — each item shows its own size/price pairs (mixed sizes, e.g. Matcha)
+//   leader  — name … single price on the right (e.g. Exotic drip)
+//   desc    — name + description, optional price (e.g. Refreshers)
+//   flavors — one uniform price table shared by a list of flavor chips (Frappes)
+export type SectionVariant = "aligned" | "inline" | "leader" | "desc" | "flavors";
+
 export interface Section {
   id: string;
   title: string;
   note?: string;
   desc?: string;
   featured?: boolean;
+  /** explicit render style; when omitted it's inferred from the data shape */
+  variant?: SectionVariant;
   sizes?: string[];
   items?: MenuItem[];
   /** uniform price table shared by all `flavors` (e.g. Frappes) */

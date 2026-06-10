@@ -58,18 +58,27 @@ sheet has more columns. For everyday edits you'll only touch **`name`** and the
 | `section_title` | Rarely | The heading shown on the board |
 | `section_note` | Rarely | Small note by the heading (e.g. "12 oz only") |
 | `section_desc` | Rarely | Section blurb (used by Refreshers) |
-| `featured` | No | Highlights a section |
+| `featured` | No | Highlights a section (becomes the top band in "featured" layout) |
+| `section_style` | Rarely | Force a layout for the section (see below); blank = auto |
 | `section_sizes` | Rarely | Size headers, e.g. `12 oz\|16 oz\|20 oz` |
 | `kind` | No | Row type (see below) — leave alone |
 | `name` | Yes | Drink / flavor / add-on name |
-| `desc` | Yes | Description (Refreshers) |
+| `desc` | Yes | Description (Refreshers) — a row can have a description **and** a price |
 | `tag` | Rarely | Badge like `Rare` |
 | `price1/2/3` | Yes | Prices, aligned to `size1/2/3` |
 | `size1/2/3` | Rarely | Size labels for that row |
 
-`kind` values: `item` (priced, one or more sizes), `single` (one price, e.g. the
-Exotic pours), `desc` (description only), `uniform` (the shared Frappe price
-row), `flavor` (a Frappe flavor), `addon` (e.g. "Add Espresso Shot").
+`kind` values: `item`/`single`/`desc` are all just menu items (the board keeps
+whatever each row has — name, description, sizes/prices, tag), plus `uniform`
+(the shared Frappe price row), `flavor` (a Frappe flavor), and `addon` (e.g.
+"Add Espresso Shot").
+
+**Section layout (`section_style`).** By default the board picks a layout from
+the data: a section whose rows have **descriptions** renders as a description
+list (name + price + blurb, like Refreshers); rows with **shared sizes** render
+as an aligned price grid; rows with a **single price** render as name … price;
+otherwise size/price pairs are shown inline. Set `section_style` to override:
+`aligned`, `inline`, `leader`, `desc`, or `flavors`. Leave it blank to auto-pick.
 
 Common drinks edits:
 - **Change a price** → edit `price1/2/3` on that row.

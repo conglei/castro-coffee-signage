@@ -57,8 +57,8 @@
       "items": [
         {
           "name": "Kopi Luwak",
-          "price": 39,
-          "tag": "Rare"
+          "tag": "Rare",
+          "price": 39
         },
         {
           "name": "Geisha Esmeralda",
@@ -379,14 +379,26 @@
       "id": "refreshers",
       "title": "Refreshers",
       "desc": "Made with green coffee extract",
+      "sizes": [
+        "18 oz",
+        "24 oz"
+      ],
       "items": [
         {
           "name": "Strawberry Acai",
-          "desc": "Ripe strawberry flavor with a boost of acai berries"
+          "desc": "Ripe strawberry flavor with a boost of acai berries",
+          "prices": {
+            "18 oz": 5.75,
+            "24 oz": 6.75
+          }
         },
         {
           "name": "Watermelon Cucumber Mint",
-          "desc": "Crisp cucumber, sweet watermelon, a hint of mint"
+          "desc": "Crisp cucumber, sweet watermelon, a hint of mint",
+          "prices": {
+            "18 oz": 5.75,
+            "24 oz": 6.75
+          }
         }
       ]
     }

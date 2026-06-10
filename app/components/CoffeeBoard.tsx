@@ -5,7 +5,7 @@
 // baked in and the design-time Tweaks panel removed.
 
 import { useEffect, useRef, useState } from "react";
-import { MENU, type Menu, type Section, type MenuItem } from "../lib/menuData";
+import { MENU, type Menu, type Section, type MenuItem, type SectionVariant } from "../lib/menuData";
 import { BrandArcs, Clock, boardVars, useFitToViewport, TYPE_PAIRS, type Theme } from "./boardChrome";
 import { useTweaks } from "../lib/useTweaks";
 import { TweaksPanel } from "./tweaks/TweaksPanel";
@@ -35,6 +35,15 @@ const DRINKS_DEFAULTS: DrinksTheme = {
 };
 
 const money = (n: number) => n.toFixed(2);
+
+// A compact single-price label for leader/desc rows: "$5.00", or "from $5.00"
+// when the item carries multiple sizes. Returns "" when there's no price.
+function priceText(item: MenuItem): string {
+  if (item.price != null) return `$${money(item.price)}`;
+  const vals = Object.values(item.prices ?? {});
+  if (vals.length) return `from $${money(Math.min(...vals))}`;
+  return "";
+}
 
 const FEATURES = [
   { name: "Kopi Luwak", note: "The world's rarest pour", price: "$39" },
@@ -116,99 +125,122 @@ function InlineRow({ item }: { item: MenuItem }) {
 }
 
 function LeaderRow({ item }: { item: MenuItem }) {
+  const price = priceText(item);
   return (
     <div className="row leader">
       <span className="nm">
         {item.name}
         {item.tag && <span className="tag">{item.tag}</span>}
       </span>
-      <span className="solo">${money(item.price!)}</span>
+      {price && <span className="solo">{price}</span>}
     </div>
   );
 }
 
 function DescRow({ item }: { item: MenuItem }) {
+  const price = priceText(item);
   return (
     <div className="row desc-row">
-      <span className="nm">{item.name}</span>
+      <div className="dr-head">
+        <span className="nm">
+          {item.name}
+          {item.tag && <span className="tag">{item.tag}</span>}
+        </span>
+        {price && <span className="solo">{price}</span>}
+      </div>
       {item.desc && <span className="sub">{item.desc}</span>}
     </div>
   );
 }
 
 /* ───────── section renderer ───────── */
-function SectionView({ s }: { s: Section }) {
-  const featured = s.featured;
-  let body: React.ReactNode;
 
-  if (s.flavors && s.uniform) {
-    const sizes = s.sizes ?? [];
-    const uniform = s.uniform;
-    body = (
-      <>
-        <div className="row head">
-          <span className="nm">All flavors</span>
-          <span className="prices">
-            {sizes.map((z) => (
-              <span key={z} className="ph">
-                {z}
-              </span>
-            ))}
-          </span>
-        </div>
-        <div className="row uniform">
-          <span className="nm muted-it">Choose your flavor</span>
-          <span className="prices">
-            {sizes.map((z) => (
-              <span key={z} className="pv">
-                {money(uniform[z])}
-              </span>
-            ))}
-          </span>
-        </div>
-        <div className="flavors">
-          {s.flavors.map((f) => (
-            <span key={f} className="flv">
-              {f}
-            </span>
-          ))}
-        </div>
-      </>
-    );
-  } else if (s.id === "exotic") {
-    body = <div className="items">{(s.items ?? []).map((it) => <LeaderRow key={it.name} item={it} />)}</div>;
-  } else if (s.id === "refreshers") {
-    body = (
-      <div className="items">
-        {s.desc && <p className="sec-desc">{s.desc}</p>}
-        {(s.items ?? []).map((it) => (
-          <DescRow key={it.name} item={it} />
-        ))}
-      </div>
-    );
-  } else if (s.sizes && (s.items ?? []).every((it) => it.prices && s.sizes!.every((z) => it.prices![z] != null))) {
-    // Uniform aligned columns.
-    const sizes = s.sizes;
-    body = (
-      <div className="items">
-        <AlignedHeader sizes={sizes} />
-        {(s.items ?? []).map((it) => (
-          <AlignedRow key={it.name} item={it} sizes={sizes} />
-        ))}
-      </div>
-    );
-  } else {
-    // Inline pairs (mixed sizes, e.g. Matcha).
-    body = <div className="items">{(s.items ?? []).map((it) => <InlineRow key={it.name} item={it} />)}</div>;
-  }
+// Single source of truth for how a section is laid out. A section can override
+// this with an explicit `variant` (from the sheet's `section_style` column);
+// otherwise it's inferred from the data shape — no per-section special-casing.
+function inferVariant(s: Section): SectionVariant {
+  if (s.flavors && s.uniform) return "flavors";
+  const items = s.items ?? [];
+  if (!items.length) return "inline";
+  // A section whose items carry descriptions reads as a descriptive list
+  // (name + optional price + blurb), even if the items also have prices.
+  if (items.every((it) => it.desc)) return "desc";
+  // All single-price, no size columns → name … price on the right.
+  if (items.every((it) => it.price != null && !it.prices)) return "leader";
+  // Shared sizes that every item prices out → aligned price columns.
+  if (s.sizes && items.every((it) => it.prices && s.sizes!.every((z) => it.prices![z] != null)))
+    return "aligned";
+  return "inline";
+}
 
+function FlavorsBody({ s }: { s: Section }) {
+  const sizes = s.sizes ?? [];
+  const uniform = s.uniform ?? {};
   return (
-    <section className={"sec" + (featured ? " featured" : "")} data-id={s.id}>
+    <>
+      <div className="row head">
+        <span className="nm">All flavors</span>
+        <span className="prices">
+          {sizes.map((z) => (
+            <span key={z} className="ph">{z}</span>
+          ))}
+        </span>
+      </div>
+      <div className="row uniform">
+        <span className="nm muted-it">Choose your flavor</span>
+        <span className="prices">
+          {sizes.map((z) => (
+            <span key={z} className="pv">{money(uniform[z])}</span>
+          ))}
+        </span>
+      </div>
+      <div className="flavors">
+        {(s.flavors ?? []).map((f) => (
+          <span key={f} className="flv">{f}</span>
+        ))}
+      </div>
+    </>
+  );
+}
+
+function SectionBody({ s, variant }: { s: Section; variant: SectionVariant }) {
+  const items = s.items ?? [];
+  switch (variant) {
+    case "flavors":
+      return <FlavorsBody s={s} />;
+    case "leader":
+      return <div className="items">{items.map((it) => <LeaderRow key={it.name} item={it} />)}</div>;
+    case "desc":
+      return (
+        <div className="items">
+          {s.desc && <p className="sec-desc">{s.desc}</p>}
+          {items.map((it) => <DescRow key={it.name} item={it} />)}
+        </div>
+      );
+    case "aligned": {
+      const sizes = s.sizes ?? [];
+      return (
+        <div className="items">
+          <AlignedHeader sizes={sizes} />
+          {items.map((it) => <AlignedRow key={it.name} item={it} sizes={sizes} />)}
+        </div>
+      );
+    }
+    case "inline":
+    default:
+      return <div className="items">{items.map((it) => <InlineRow key={it.name} item={it} />)}</div>;
+  }
+}
+
+function SectionView({ s }: { s: Section }) {
+  const variant = s.variant ?? inferVariant(s);
+  return (
+    <section className={"sec" + (s.featured ? " featured" : "")} data-id={s.id}>
       <header className="sec-h">
         <h2>{s.title}</h2>
         {s.note && <span className="note">{s.note}</span>}
       </header>
-      {body}
+      <SectionBody s={s} variant={variant} />
       {s.addOns && (
         <div className="addons">
           {s.addOns.map((a) => (
@@ -225,36 +257,52 @@ function SectionView({ s }: { s: Section }) {
 /* ───────── columns ───────── */
 const COLS = ["colA", "colB", "colC", "colD"] as const;
 
-/* Featured layout: exotic band across top, rest in 4 balanced columns. */
+// Approximate rendered height of a section (header + rows) so we can balance
+// columns by content, not just section count.
+const sectionWeight = (s: Section) => 1 + (s.items?.length ?? s.flavors?.length ?? 1);
+
+// Greedily pack sections into `n` columns, always adding to the shortest one,
+// preserving order within each column.
+function balanceColumns(sections: Section[], n: number): Section[][] {
+  const cols: Section[][] = Array.from({ length: n }, () => []);
+  const loads = new Array(n).fill(0);
+  for (const s of sections) {
+    let k = 0;
+    for (let i = 1; i < n; i++) if (loads[i] < loads[k]) k = i;
+    cols[k].push(s);
+    loads[k] += sectionWeight(s);
+  }
+  return cols;
+}
+
+/* Featured layout: the featured section as a band across the top, the rest
+   auto-balanced into 4 columns. No hard-coded section ids. */
 function FeaturedLayout({ menu }: { menu: Menu }) {
-  const byId: Record<string, Section> = {};
-  COLS.forEach((c) => menu[c].forEach((s) => (byId[s.id] = s)));
-  const exotic = byId["exotic"];
-  const cols: Section[][] = [
-    [byId["fresh"], byId["turkish"], byId["hot-chocolate"]],
-    menu.colB,
-    menu.colC,
-    [byId["cold-brew"], byId["matcha"], byId["vietnamese"], byId["refreshers"]],
-  ];
+  const all = COLS.flatMap((c) => menu[c]);
+  const band = all.find((s) => s.featured);
+  const rest = all.filter((s) => s !== band);
+  const cols = balanceColumns(rest, 4);
   return (
     <>
-      <div className="exotic-band">
-        <div className="eb-head">
-          <h2>Exotic Hand Made Drip</h2>
-          <span className="note">12 oz only · single origin</span>
+      {band && (
+        <div className="exotic-band">
+          <div className="eb-head">
+            <h2>{band.title}</h2>
+            {band.note && <span className="note">{band.note}</span>}
+          </div>
+          <div className="eb-items">
+            {(band.items ?? []).map((it) => (
+              <div className="eb-item" key={it.name}>
+                <span className="nm">
+                  {it.name}
+                  {it.tag && <span className="tag">{it.tag}</span>}
+                </span>
+                {priceText(it) && <span className="solo">{priceText(it)}</span>}
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="eb-items">
-          {(exotic.items ?? []).map((it) => (
-            <div className="eb-item" key={it.name}>
-              <span className="nm">
-                {it.name}
-                {it.tag && <span className="tag">{it.tag}</span>}
-              </span>
-              <span className="solo">${money(it.price!)}</span>
-            </div>
-          ))}
-        </div>
-      </div>
+      )}
       <div className="grid grid-3plus">
         {cols.map((group, i) => (
           <div className="col" key={i}>

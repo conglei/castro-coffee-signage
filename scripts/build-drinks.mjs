@@ -91,6 +91,23 @@ function pairs(o) {
   return out;
 }
 
+// Allowed explicit render styles (sheet `section_style` column). Anything else
+// is ignored so the renderer falls back to inferring the style from the data.
+const VARIANTS = new Set(["aligned", "inline", "leader", "desc", "flavors"]);
+
+// Build a regular item from a row, keeping every field it actually has. This
+// is shape-driven (not kind-driven), so e.g. a description row can also carry a
+// price. size/price pairs win over a single price1 when both are present.
+function buildItem(r) {
+  const item = { name: r.name };
+  if (r.desc) item.desc = r.desc;
+  if (r.tag) item.tag = r.tag;
+  const pr = pairs(r);
+  if (Object.keys(pr).length) item.prices = pr;
+  else { const p = num(r.price1); if (p != null) item.price = p; }
+  return item;
+}
+
 async function main() {
   if (!SHEET_CSV_URL) {
     console.log("[build-drinks] DRINKS_SHEET_CSV_URL not set — keeping committed app/lib/drinks.json.");
@@ -145,6 +162,8 @@ async function main() {
     if (meta.section_note) section.note = meta.section_note;
     if (meta.section_desc) section.desc = meta.section_desc;
     if (truthy(meta.featured)) section.featured = true;
+    const style = (meta.section_style || "").trim().toLowerCase();
+    if (VARIANTS.has(style)) section.variant = style;
     if (meta.section_sizes) section.sizes = meta.section_sizes.split("|").map((s) => s.trim()).filter(Boolean);
 
     const items = [];
@@ -157,9 +176,8 @@ async function main() {
         case "uniform": uniform = pairs(r); break;
         case "flavor": if (r.name) flavors.push(r.name); break;
         case "addon": { const p = num(r.price1); if (r.name && p != null) addOns.push({ name: r.name, price: p }); break; }
-        case "desc": if (r.name) items.push({ name: r.name, ...(r.desc ? { desc: r.desc } : {}) }); break;
-        case "single": { const p = num(r.price1); if (r.name && p != null) items.push({ name: r.name, price: p, ...(r.tag ? { tag: r.tag } : {}) }); break; }
-        default: { const pr = pairs(r); if (r.name && Object.keys(pr).length) items.push({ name: r.name, prices: pr }); }
+        // item / single / desc — all regular items, captured by data shape.
+        default: if (r.name) items.push(buildItem(r));
       }
     }
 
