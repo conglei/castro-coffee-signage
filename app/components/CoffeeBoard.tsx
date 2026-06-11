@@ -138,7 +138,7 @@ function LeaderRow({ item }: { item: MenuItem }) {
 }
 
 function DescRow({ item }: { item: MenuItem }) {
-  const price = priceText(item);
+  const entries = Object.entries(item.prices ?? {});
   return (
     <div className="row desc-row">
       <div className="dr-head">
@@ -146,7 +146,18 @@ function DescRow({ item }: { item: MenuItem }) {
           {item.name}
           {item.tag && <span className="tag">{item.tag}</span>}
         </span>
-        {price && <span className="solo">{price}</span>}
+        {entries.length > 0 ? (
+          <span className="pairs">
+            {entries.map(([s, p]) => (
+              <span key={s} className="pair">
+                <em>{s}</em>
+                {money(p)}
+              </span>
+            ))}
+          </span>
+        ) : item.price != null ? (
+          <span className="solo">${money(item.price)}</span>
+        ) : null}
       </div>
       {item.desc && <span className="sub">{item.desc}</span>}
     </div>
