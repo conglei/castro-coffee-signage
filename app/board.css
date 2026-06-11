@@ -207,10 +207,9 @@
 
   /* desc rows (refreshers) */
   .row.desc-row { display: block; padding: 12px 0; }
-  .row.desc-row .dr-head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; }
-  .row.desc-row .nm { display: block; font-size: calc(44px * var(--fs-item,1)); }
+  .row.desc-row .dr-head { display: flex; align-items: baseline; gap: 24px; }
+  .row.desc-row .dr-head .nm { flex: 1 1 auto; display: block; font-size: calc(44px * var(--fs-item,1)); }
   .row.desc-row .dr-head .solo { flex: 0 0 auto; font-family: var(--font-display); font-weight: 600; font-size: calc(44px * var(--fs-item,1)); color: var(--accent); font-variant-numeric: tabular-nums; }
-  .row.desc-row .dr-head .pairs { flex: 0 0 auto; gap: 30px; }
   .row.desc-row .sub { display: block; font-family: var(--font-body); font-style: italic; font-size: calc(30px * var(--fs-note,1)); color: var(--ink-soft); line-height: 1.28; margin-top: 4px; }
 
   /* leader rows (single price) */

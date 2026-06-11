@@ -137,8 +137,11 @@ function LeaderRow({ item }: { item: MenuItem }) {
   );
 }
 
-function DescRow({ item }: { item: MenuItem }) {
-  const entries = Object.entries(item.prices ?? {});
+// A descriptive row: name (+ optional tag), prices aligned under the shared
+// size header when the section has sizes (else a single price), and the blurb
+// underneath. Prices use the same `.prices`/`.pv` grid as aligned sections so
+// the columns line up with one header instead of repeating size labels per row.
+function DescRow({ item, sizes }: { item: MenuItem; sizes?: string[] }) {
   return (
     <div className="row desc-row">
       <div className="dr-head">
@@ -146,13 +149,10 @@ function DescRow({ item }: { item: MenuItem }) {
           {item.name}
           {item.tag && <span className="tag">{item.tag}</span>}
         </span>
-        {entries.length > 0 ? (
-          <span className="pairs">
-            {entries.map(([s, p]) => (
-              <span key={s} className="pair">
-                <em>{s}</em>
-                {money(p)}
-              </span>
+        {sizes ? (
+          <span className="prices" data-cols={sizes.length}>
+            {sizes.map((z) => (
+              <span key={z} className="pv">{item.prices?.[z] != null ? money(item.prices[z]) : ""}</span>
             ))}
           </span>
         ) : item.price != null ? (
@@ -221,13 +221,19 @@ function SectionBody({ s, variant }: { s: Section; variant: SectionVariant }) {
       return <FlavorsBody s={s} />;
     case "leader":
       return <div className="items">{items.map((it) => <LeaderRow key={it.name} item={it} />)}</div>;
-    case "desc":
+    case "desc": {
+      // Show the size header once (like aligned sections) when the items carry
+      // sizes; otherwise it's a plain descriptive list with no price columns.
+      const sizes = s.sizes ?? [];
+      const hasGrid = sizes.length > 0 && items.some((it) => it.prices);
       return (
         <div className="items">
           {s.desc && <p className="sec-desc">{s.desc}</p>}
-          {items.map((it) => <DescRow key={it.name} item={it} />)}
+          {hasGrid && <AlignedHeader sizes={sizes} />}
+          {items.map((it) => <DescRow key={it.name} item={it} sizes={hasGrid ? sizes : undefined} />)}
         </div>
       );
+    }
     case "aligned": {
       const sizes = s.sizes ?? [];
       return (
