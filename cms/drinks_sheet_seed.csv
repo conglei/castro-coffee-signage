@@ -21,24 +21,24 @@ B,hot-espresso,Hot Espresso Drinks,,,,12 oz|16 oz|20 oz,item,White Satin Mocha,,
 B,hot-espresso,Hot Espresso Drinks,,,,12 oz|16 oz|20 oz,item,Caramel Macchiato,,,12 oz,5.5,16 oz,6,20 oz,6.5
 B,hot-espresso,Hot Espresso Drinks,,,,12 oz|16 oz|20 oz,item,Chai,,,12 oz,5.5,16 oz,6,20 oz,6.5
 B,hot-espresso,Hot Espresso Drinks,,,,12 oz|16 oz|20 oz,item,Dirty Chai,,,12 oz,6.5,16 oz,7,20 oz,7.5
-C,iced,Iced Drinks,,,,16 oz|20 oz|24 oz,item,Iced Coffee,,,16 oz,4.95,20 oz,5.45,24 oz,5.75
-C,iced,Iced Drinks,,,,16 oz|20 oz|24 oz,item,Iced Cafe Latte,,,16 oz,6.25,20 oz,6.75,24 oz,7.25
-C,iced,Iced Drinks,,,,16 oz|20 oz|24 oz,item,Iced Cafe Mocha,,,16 oz,6.75,20 oz,7.25,24 oz,7.75
-C,iced,Iced Drinks,,,,16 oz|20 oz|24 oz,item,Iced Caramel Macchiato,,,16 oz,6.25,20 oz,6.75,24 oz,7.75
-C,iced,Iced Drinks,,,,16 oz|20 oz|24 oz,item,Iced White Mocha,,,16 oz,6.25,20 oz,6.75,24 oz,7.75
+C,iced,Iced Drinks,,,,16 oz|24 oz,item,Iced Coffee,,,16 oz,4.95,,,24 oz,5.75
+C,iced,Iced Drinks,,,,16 oz|24 oz,item,Iced Cafe Latte,,,16 oz,6.25,,,24 oz,7.25
+C,iced,Iced Drinks,,,,16 oz|24 oz,item,Iced Cafe Mocha,,,16 oz,6.75,,,24 oz,7.75
+C,iced,Iced Drinks,,,,16 oz|24 oz,item,Iced Caramel Macchiato,,,16 oz,6.25,,,24 oz,7.75
+C,iced,Iced Drinks,,,,16 oz|24 oz,item,Iced White Mocha,,,16 oz,6.25,,,24 oz,7.75
 C,iced-espresso,Iced Espresso,,,,Single|Double,item,Espresso,,,Single,5,Double,5.5,,
-C,frappes,Frappes,,,,16 oz|20 oz|24 oz,uniform,,,,16 oz,6.25,20 oz,6.75,24 oz,7.25
-C,frappes,Frappes,,,,16 oz|20 oz|24 oz,flavor,Mocha Bean,,,,,,,,
-C,frappes,Frappes,,,,16 oz|20 oz|24 oz,flavor,Vanilla,,,,,,,,
-C,frappes,Frappes,,,,16 oz|20 oz|24 oz,flavor,Caramel,,,,,,,,
-C,frappes,Frappes,,,,16 oz|20 oz|24 oz,flavor,Raspberry,,,,,,,,
-C,frappes,Frappes,,,,16 oz|20 oz|24 oz,flavor,Banana,,,,,,,,
-C,frappes,Frappes,,,,16 oz|20 oz|24 oz,flavor,Coconut,,,,,,,,
-C,frappes,Frappes,,,,16 oz|20 oz|24 oz,flavor,Chai,,,,,,,,
-D,cold-brew,Cold Brew,,,,18 oz|20 oz|24 oz,item,Cold Brew,,,18 oz,5,20 oz,5.5,24 oz,6.25
+C,frappes,Frappes,,,,16 oz|24 oz,uniform,,,,16 oz,6.25,,,24 oz,7.25
+C,frappes,Frappes,,,,16 oz|24 oz,flavor,Mocha Bean,,,,,,,,
+C,frappes,Frappes,,,,16 oz|24 oz,flavor,Vanilla,,,,,,,,
+C,frappes,Frappes,,,,16 oz|24 oz,flavor,Caramel,,,,,,,,
+C,frappes,Frappes,,,,16 oz|24 oz,flavor,Raspberry,,,,,,,,
+C,frappes,Frappes,,,,16 oz|24 oz,flavor,Banana,,,,,,,,
+C,frappes,Frappes,,,,16 oz|24 oz,flavor,Coconut,,,,,,,,
+C,frappes,Frappes,,,,16 oz|24 oz,flavor,Chai,,,,,,,,
+D,cold-brew,Cold Brew,,,,18 oz|24 oz,item,Cold Brew,,,18 oz,5,,,24 oz,6.25
 D,matcha,Matcha Latte,,,,,item,Hot Matcha Latte,,,12 oz,5,16 oz,5.5,20 oz,6
-D,matcha,Matcha Latte,,,,,item,Iced Matcha Latte,,,18 oz,5.75,20 oz,6.25,24 oz,6.75
-D,vietnamese,Vietnamese Iced Coffee,,,,18 oz|20 oz|24 oz,item,Vietnamese Iced Coffee,,,18 oz,5.75,20 oz,6.25,24 oz,6.75
+D,matcha,Matcha Latte,,,,,item,Iced Matcha Latte,,,18 oz,5.75,,,24 oz,6.75
+D,vietnamese,Vietnamese Iced Coffee,,,,18 oz|24 oz,item,Vietnamese Iced Coffee,,,18 oz,5.75,,,24 oz,6.75
 D,hot-chocolate,Hot Chocolate,,,,12 oz|16 oz|20 oz,item,Hot Chocolate,,,12 oz,4.75,16 oz,5.25,20 oz,5.75
-D,refreshers,Refreshers,,Made with green coffee extract — a natural source of energy.,,,desc,Strawberry Acai,Ripe strawberry flavor with a boost of acai berries,,,,,,,
-D,refreshers,Refreshers,,Made with green coffee extract — a natural source of energy.,,,desc,Watermelon Cucumber Mint,"Crisp cucumber, sweet watermelon, a hint of mint",,,,,,,
+D,refreshers,Refreshers,,Made with green coffee extract,,18 oz|24 oz,Item,Strawberry Acai,Ripe strawberry flavor with a boost of acai berries,,18 oz,5.75,24 oz,6.75,,
+D,refreshers,Refreshers,,Made with green coffee extract,,18 oz|24 oz,Item,Watermelon Cucumber Mint,"Crisp cucumber, sweet watermelon, a hint of mint",,18 oz,5.75,24 oz,6.75,,
