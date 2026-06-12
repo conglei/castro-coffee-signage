@@ -34,7 +34,9 @@ const DRINKS_DEFAULTS: DrinksTheme = {
   motion: true,
 };
 
-const money = (n: number) => n.toFixed(2);
+// Defensive: a missing price (e.g. a header size the item doesn't price, from a
+// sheet typo) renders as blank instead of throwing on undefined.toFixed().
+const money = (n?: number | null) => (n == null ? "" : n.toFixed(2));
 
 // A compact single-price label for leader/desc rows: "$5.00", or "from $5.00"
 // when the item carries multiple sizes. Returns "" when there's no price.
@@ -192,8 +194,10 @@ function inferVariant(s: Section): SectionVariant {
 }
 
 function FlavorsBody({ s }: { s: Section }) {
-  const sizes = s.sizes ?? [];
   const uniform = s.uniform ?? {};
+  // The uniform price table is the source of truth for which sizes are priced,
+  // so derive the columns from it (robust to a mismatched section_sizes).
+  const sizes = Object.keys(uniform).length ? Object.keys(uniform) : (s.sizes ?? []);
   return (
     <>
       <div className="row head">
