@@ -208,7 +208,6 @@
       "title": "Iced Drinks",
       "sizes": [
         "16 oz",
-        "20 oz",
         "24 oz"
       ],
       "items": [
@@ -216,7 +215,6 @@
           "name": "Iced Coffee",
           "prices": {
             "16 oz": 4.95,
-            "20 oz": 5.45,
             "24 oz": 5.75
           }
         },
@@ -224,7 +222,6 @@
           "name": "Iced Cafe Latte",
           "prices": {
             "16 oz": 6.25,
-            "20 oz": 6.75,
             "24 oz": 7.25
           }
         },
@@ -232,7 +229,6 @@
           "name": "Iced Cafe Mocha",
           "prices": {
             "16 oz": 6.75,
-            "20 oz": 7.25,
             "24 oz": 7.75
           }
         },
@@ -240,7 +236,6 @@
           "name": "Iced Caramel Macchiato",
           "prices": {
             "16 oz": 6.25,
-            "20 oz": 6.75,
             "24 oz": 7.75
           }
         },
@@ -248,7 +243,6 @@
           "name": "Iced White Mocha",
           "prices": {
             "16 oz": 6.25,
-            "20 oz": 6.75,
             "24 oz": 7.75
           }
         }
@@ -276,12 +270,10 @@
       "title": "Frappes",
       "sizes": [
         "16 oz",
-        "20 oz",
         "24 oz"
       ],
       "uniform": {
         "16 oz": 6.25,
-        "20 oz": 6.75,
         "24 oz": 7.25
       },
       "flavors": [
@@ -301,7 +293,6 @@
       "title": "Cold Brew",
       "sizes": [
         "18 oz",
-        "20 oz",
         "24 oz"
       ],
       "items": [
@@ -309,7 +300,6 @@
           "name": "Cold Brew",
           "prices": {
             "18 oz": 5,
-            "20 oz": 5.5,
             "24 oz": 6.25
           }
         }
@@ -331,7 +321,6 @@
           "name": "Iced Matcha Latte",
           "prices": {
             "18 oz": 5.75,
-            "20 oz": 6.25,
             "24 oz": 6.75
           }
         }
@@ -342,7 +331,6 @@
       "title": "Vietnamese Iced Coffee",
       "sizes": [
         "18 oz",
-        "20 oz",
         "24 oz"
       ],
       "items": [
@@ -350,7 +338,6 @@
           "name": "Vietnamese Iced Coffee",
           "prices": {
             "18 oz": 5.75,
-            "20 oz": 6.25,
             "24 oz": 6.75
           }
         }

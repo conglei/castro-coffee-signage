@@ -4,7 +4,7 @@
 // Ported from the design handoff (menu-app.jsx), with the final tweak values
 // baked in and the design-time Tweaks panel removed.
 
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { MENU, type Menu, type Section, type MenuItem, type SectionVariant } from "../lib/menuData";
 import { BrandArcs, Clock, boardVars, useFitToViewport, TYPE_PAIRS, type Theme } from "./boardChrome";
 import { useTweaks } from "../lib/useTweaks";
@@ -76,9 +76,9 @@ function FeatureTicker({ rotate }: { rotate: boolean }) {
 }
 
 /* ───────── price helpers ───────── */
-function AlignedHeader({ sizes }: { sizes: string[] }) {
+function AlignedHeader({ sizes, spaced }: { sizes: string[]; spaced?: boolean }) {
   return (
-    <div className="row head">
+    <div className={"row head" + (spaced ? " head-spaced" : "")}>
       <span className="nm" />
       <span className="prices" data-cols={sizes.length}>
         {sizes.map((s) => (
@@ -106,20 +106,27 @@ function AlignedRow({ item, sizes }: { item: MenuItem; sizes: string[] }) {
   );
 }
 
-function InlineRow({ item }: { item: MenuItem }) {
-  // Item with its own (possibly unique) size set, shown as pairs.
-  const entries = Object.entries(item.prices ?? {});
+// Items whose size sets differ (e.g. Hot vs Iced Matcha). Group consecutive
+// items that share the same sizes and give each group one shared size header
+// with prices aligned beneath — instead of repeating size labels on every row.
+// When every item shares one size set this collapses to a single header.
+function InlineGroups({ items }: { items: MenuItem[] }) {
+  const groups: { sizes: string[]; items: MenuItem[] }[] = [];
+  for (const it of items) {
+    const sizes = Object.keys(it.prices ?? {});
+    const sig = sizes.join("|");
+    const last = groups[groups.length - 1];
+    if (last && last.sizes.join("|") === sig) last.items.push(it);
+    else groups.push({ sizes, items: [it] });
+  }
   return (
-    <div className="row inline">
-      <span className="nm">{item.name}</span>
-      <span className="pairs">
-        {entries.map(([s, p]) => (
-          <span key={s} className="pair">
-            <em>{s}</em>
-            {money(p)}
-          </span>
-        ))}
-      </span>
+    <div className="items">
+      {groups.map((g, gi) => (
+        <Fragment key={gi}>
+          {g.sizes.length > 0 && <AlignedHeader sizes={g.sizes} spaced={gi > 0} />}
+          {g.items.map((it) => <AlignedRow key={it.name} item={it} sizes={g.sizes} />)}
+        </Fragment>
+      ))}
     </div>
   );
 }
@@ -245,7 +252,7 @@ function SectionBody({ s, variant }: { s: Section; variant: SectionVariant }) {
     }
     case "inline":
     default:
-      return <div className="items">{items.map((it) => <InlineRow key={it.name} item={it} />)}</div>;
+      return <InlineGroups items={items} />;
   }
 }
 

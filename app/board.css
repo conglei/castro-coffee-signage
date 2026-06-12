@@ -184,6 +184,7 @@
   .row { display: flex; align-items: baseline; padding: 15px 0; }
   .row .nm { font-family: var(--font-body); font-size: calc(44px * var(--fs-item,1)); font-weight: 500; color: var(--ink); flex: 1 1 auto; min-width: 0; }
   .row.head { padding: 4px 0 11px; border-bottom: 1.5px solid var(--paper-line); margin-bottom: 4px; }
+  .row.head.head-spaced { margin-top: 20px; }
   .row.head .nm { flex: 1 1 auto; }
   .prices { display: flex; flex: 0 0 auto; }
   .prices .ph {
