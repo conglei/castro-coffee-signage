@@ -8,53 +8,53 @@
         {
           "name": "California Blend",
           "roast": "Medium",
-          "price": "13.95"
+          "price": "14.95"
         },
         {
           "name": "Castro Breakfast-Blend",
           "roast": "Medium",
-          "price": "12.50"
+          "price": "13.50"
         },
         {
           "name": "House Blend",
           "roast": "Medium",
-          "price": "13.95"
+          "price": "14.95"
         },
         {
           "name": "House Sumatra Medium",
           "roast": "Medium",
-          "price": "12.50",
+          "price": "13.50",
           "origin": "Sumatra"
         },
         {
           "name": "Morning Rush",
           "roast": "Medium",
-          "price": "12.50"
+          "price": "13.50"
         },
         {
           "name": "North Beach",
           "roast": "Medium",
-          "price": "12.50"
+          "price": "13.50"
         },
         {
           "name": "SF Breakfast",
           "roast": "Medium",
-          "price": "13.95"
+          "price": "14.95"
         },
         {
           "name": "Sweet Italian",
           "roast": "Medium",
-          "price": "13.95"
+          "price": "14.95"
         },
         {
           "name": "Viennese Blend",
           "roast": "Medium",
-          "price": "12.95"
+          "price": "14.95"
         },
         {
           "name": "Arabic Blend #1",
           "roast": "Medium",
-          "price": "13.95"
+          "price": "14.95"
         }
       ]
     },
@@ -64,61 +64,61 @@
         {
           "name": "Brazil Bourbon Santos",
           "roast": "Medium",
-          "price": "13.95",
+          "price": "14.95",
           "origin": "Brazil"
         },
         {
           "name": "Colombian",
           "roast": "Medium",
-          "price": "12.50",
+          "price": "13.50",
           "origin": "Colombia"
         },
         {
           "name": "Colombian Supremo",
           "roast": "Medium",
-          "price": "13.95",
+          "price": "14.95",
           "origin": "Colombia"
         },
         {
           "name": "Costa Rica Tarrazu",
           "roast": "Medium",
-          "price": "13.95",
+          "price": "14.95",
           "origin": "Costa Rica"
         },
         {
           "name": "Ethiopian Harrar",
           "roast": "Dark",
-          "price": "17.95",
+          "price": "18.95",
           "origin": "Ethiopia"
         },
         {
           "name": "Ethiopian Moka",
           "roast": "Medium",
-          "price": "14.95",
+          "price": "15.95",
           "origin": "Ethiopia"
         },
         {
           "name": "Ethiopian Mystic Lion",
           "roast": "Medium",
-          "price": "14.50",
+          "price": "15.95",
           "origin": "Ethiopia"
         },
         {
           "name": "Ethiopian Yirgacheffe",
           "roast": "Medium",
-          "price": "17.95",
+          "price": "18.95",
           "origin": "Ethiopia"
         },
         {
           "name": "Guatemala Antigua",
           "roast": "Medium",
-          "price": "13.95",
+          "price": "14.95",
           "origin": "Guatemala"
         },
         {
           "name": "Guatemala Dark",
           "roast": "Dark",
-          "price": "12.50",
+          "price": "13.50",
           "origin": "Guatemala"
         },
         {
@@ -130,7 +130,7 @@
         {
           "name": "Indian Monsoon",
           "roast": "Medium",
-          "price": "19.00",
+          "price": "19.95",
           "origin": "India"
         },
         {
@@ -142,43 +142,43 @@
         {
           "name": "Mexican Altura",
           "roast": "Medium",
-          "price": "12.50",
+          "price": "13.50",
           "origin": "Mexico"
         },
         {
           "name": "Moka Java",
           "roast": "Medium",
-          "price": "13.95",
+          "price": "14.95",
           "origin": "Ethiopia"
         },
         {
           "name": "Moka Java dark",
           "roast": "Dark",
-          "price": "12.95",
+          "price": "14.95",
           "origin": "Ethiopia"
         },
         {
           "name": "New Guinea Reserve",
           "roast": "Medium",
-          "price": "16.50",
+          "price": "17.95",
           "origin": "Papua New Guinea"
         },
         {
           "name": "Nicaraguan Estate",
           "roast": "Medium",
-          "price": "12.50",
+          "price": "13.50",
           "origin": "Nicaragua"
         },
         {
           "name": "Sumatra Mandheling dark",
           "roast": "Dark",
-          "price": "13.95",
+          "price": "14.95",
           "origin": "Sumatra"
         },
         {
           "name": "Tanzania Peaberry",
           "roast": "Medium",
-          "price": "13.95",
+          "price": "16.95",
           "origin": "Tanzania"
         },
         {
@@ -195,97 +195,97 @@
         {
           "name": "Barbary Coast",
           "roast": "Dark",
-          "price": "15.50"
+          "price": "15.95"
         },
         {
           "name": "Berkeley's Blend",
           "roast": "Dark",
-          "price": "13.95"
+          "price": "14.95"
         },
         {
           "name": "Castro Double Feature",
           "roast": "Dark",
-          "price": "13.95"
+          "price": "14.95"
         },
         {
           "name": "European Royale",
           "roast": "Dark",
-          "price": "13.95"
+          "price": "14.95"
         },
         {
           "name": "Fog Lifter",
           "roast": "Dark",
-          "price": "13.95"
+          "price": "14.95"
         },
         {
           "name": "French Roast",
           "roast": "Dark",
-          "price": "12.50"
+          "price": "13.50"
         },
         {
           "name": "French Roast Classic",
           "roast": "Dark",
-          "price": "12.25"
+          "price": "14.95"
         },
         {
           "name": "French/Italian",
           "roast": "Dark",
-          "price": "12.50"
+          "price": "13.50"
         },
         {
           "name": "Italian Roast Classic",
           "roast": "Dark",
-          "price": "13.95"
+          "price": "14.95"
         },
         {
           "name": "Joe Black",
           "roast": "Dark",
-          "price": "15.95"
+          "price": "17.95"
         },
         {
           "name": "Majestic Blend",
           "roast": "Dark",
-          "price": "14.75"
+          "price": "14.95"
         },
         {
           "name": "Midnight French",
           "roast": "Dark",
-          "price": "13.95"
+          "price": "14.95"
         },
         {
           "name": "Millenium Joe",
           "roast": "Dark",
-          "price": "17.50"
+          "price": "18.95"
         },
         {
           "name": "Red Sea Blend",
           "roast": "Dark",
-          "price": "15.50"
+          "price": "18.95"
         },
         {
           "name": "Rivera French",
           "roast": "Dark",
-          "price": "13.95"
+          "price": "14.95"
         },
         {
           "name": "Road Warrior Blend",
           "roast": "Dark",
-          "price": "17.50"
+          "price": "18.95"
         },
         {
           "name": "SF Sunshine",
           "roast": "Dark",
-          "price": "17.50"
+          "price": "18.95"
         },
         {
           "name": "Triple Dark",
           "roast": "Dark",
-          "price": "13.92"
+          "price": "14.95"
         },
         {
           "name": "Vienna Dark Roast",
           "roast": "Dark",
-          "price": "12.50"
+          "price": "13.50"
         },
         {
           "name": "Presidio Dark",
@@ -300,12 +300,12 @@
         {
           "name": "Espresso Royale",
           "roast": "Dark",
-          "price": "13.95"
+          "price": "14.95"
         },
         {
           "name": "Espresso Ultima",
           "roast": "Dark",
-          "price": "13.95"
+          "price": "14.95"
         },
         {
           "name": "Malabar Gold",
@@ -316,7 +316,7 @@
         {
           "name": "Rocket Espresso",
           "roast": "Dark",
-          "price": "17.50"
+          "price": "18.95"
         }
       ]
     },
@@ -326,104 +326,94 @@
         {
           "name": "Amaretto",
           "roast": "Medium",
-          "price": "14.50"
+          "price": "15.50"
         },
         {
           "name": "Banana Cream",
           "roast": "Medium",
-          "price": "13.95"
+          "price": "15.50"
         },
         {
           "name": "Caramel Cream",
           "roast": "Medium",
-          "price": "13.95"
+          "price": "14.95"
         },
         {
           "name": "Chocolate Mint",
           "roast": "Medium",
-          "price": "13.95"
+          "price": "15.50"
         },
         {
           "name": "Chocolate Raspberry",
           "roast": "Medium",
-          "price": "13.50"
+          "price": "15.50"
         },
         {
           "name": "Cinnamon Frangelico",
           "roast": "Medium",
-          "price": "13.95"
+          "price": "15.50"
         },
         {
           "name": "Dark Chocolate Truffle",
           "roast": "Medium",
-          "price": "13.95"
+          "price": "14.95"
         },
         {
           "name": "French Vanilla",
           "roast": "Medium",
-          "price": "11.95"
+          "price": "15.50"
         },
         {
           "name": "Hawaiian Coconut",
           "roast": "Medium",
-          "price": "13.95",
+          "price": "15.50",
           "origin": "Hawaii"
         },
         {
           "name": "Hazelnut",
           "roast": "Medium",
-          "price": "12.95"
+          "price": "15.50"
         },
         {
           "name": "Irish Cream",
           "roast": "Medium",
-          "price": "12.95"
+          "price": "15.50"
         },
         {
           "name": "Kona Macadamia",
           "roast": "Medium",
-          "price": "13.95",
+          "price": "14.95",
           "origin": "Hawaii"
-        },
-        {
-          "name": "Mandarin Orange",
-          "roast": "Medium",
-          "price": "13.95"
         },
         {
           "name": "Southern Pecan",
           "roast": "Medium",
-          "price": "13.95"
-        },
-        {
-          "name": "Torani Syrup",
-          "roast": "Medium",
-          "price": "11.49"
+          "price": "15.50"
         },
         {
           "name": "Vanilla Nut Cream",
           "roast": "Medium",
-          "price": "12.95"
+          "price": "15.50"
         },
         {
           "name": "Bourbon Pecan",
           "roast": "Medium",
-          "price": "14.50"
+          "price": "15.50"
         },
         {
           "name": "Chocolate Almond",
           "roast": "Medium",
-          "price": "14.50"
+          "price": "15.50"
         },
         {
           "name": "Chocolate Avalanche",
           "roast": "Medium",
-          "price": "14.50"
+          "price": "15.50"
         },
         {
           "name": "Wild Blueberry",
           "roast": "Medium",
-          "price": "14.50"
+          "price": "15.50"
         }
       ]
     },
@@ -433,41 +423,41 @@
         {
           "name": "Organic Bali blue moon",
           "roast": "Dark",
-          "price": "17.75",
+          "price": "18.95",
           "origin": "Indonesia",
           "badge": "Organic"
         },
         {
           "name": "Organic Celebes",
           "roast": "Medium",
-          "price": "16.50",
+          "price": "16.95",
           "origin": "Indonesia",
           "badge": "Organic"
         },
         {
           "name": "Organic French",
           "roast": "Dark",
-          "price": "17.50",
+          "price": "18.95",
           "badge": "Organic"
         },
         {
           "name": "Organic Mexican",
           "roast": "Medium",
-          "price": "17.50",
+          "price": "18.95",
           "origin": "Mexico",
           "badge": "Organic"
         },
         {
           "name": "Organic Peru",
           "roast": "Medium",
-          "price": "17.50",
+          "price": "18.95",
           "origin": "Peru",
           "badge": "Organic"
         },
         {
           "name": "Organic Sumatra",
           "roast": "Dark",
-          "price": "17.50",
+          "price": "18.95",
           "origin": "Sumatra",
           "badge": "Organic"
         }
@@ -479,92 +469,87 @@
         {
           "name": "Decaf Cinnamon",
           "roast": "Medium",
-          "price": "15.50"
+          "price": "15.95"
         },
         {
           "name": "Decaf Colombian",
           "roast": "Medium",
-          "price": "14.95",
+          "price": "15.50",
           "origin": "Colombia"
         },
         {
           "name": "Decaf Costa Rica",
           "roast": "Medium",
-          "price": "14.95",
+          "price": "15.50",
           "origin": "Costa Rica"
         },
         {
           "name": "Decaf French Roast",
           "roast": "Dark",
-          "price": "14.95"
+          "price": "15.50"
         },
         {
           "name": "Decaf Guatemala",
           "roast": "Medium",
-          "price": "14.95",
+          "price": "15.95",
           "origin": "Guatemala"
         },
         {
           "name": "Decaf Moka Java",
           "roast": "Medium",
-          "price": "14.95",
+          "price": "15.50",
           "origin": "Ethiopia"
         },
         {
           "name": "Decaf Royale",
           "roast": "Medium",
-          "price": "14.50"
+          "price": "15.50"
         },
         {
           "name": "Decaf Vienna",
           "roast": "Dark",
-          "price": "14.95"
-        },
-        {
-          "name": "Decaf Amaretto",
-          "roast": "Medium",
-          "price": "14.50"
+          "price": "15.95"
         },
         {
           "name": "Decaf Arabic Blend/Cardamom",
           "roast": "Medium",
-          "price": "14.95"
+          "price": "15.95"
         },
         {
           "name": "Decaf Castro Breakfast",
           "roast": "Medium",
-          "price": "14.75"
+          "price": "15.95"
         },
         {
           "name": "Decaf European Royale",
           "roast": "Dark",
-          "price": "14.75"
+          "price": "15.50"
         },
         {
           "name": "Decaf Italian Roast",
           "roast": "Dark",
-          "price": "14.95"
+          "price": "15.50"
         },
         {
           "name": "Decaf Morning Rush",
           "roast": "Medium",
-          "price": "14.95"
+          "price": "15.95"
         },
         {
           "name": "Decaf Sweet Italian",
           "roast": "Medium",
-          "price": "14.75"
+          "price": "15.50"
         },
         {
           "name": "Fair Trade Organic Decaf (SWP) Italian Roast",
           "roast": "Dark",
-          "price": "16.95",
+          "price": "19.95",
           "badge": "Organic"
         },
         {
           "name": "Fair Trade Organic Decaf (SWP) French Roast",
           "roast": "Dark",
-          "price": "16.95",
+          "price": "19.95",
           "badge": "Organic"
         }
       ]
@@ -575,20 +560,20 @@
         {
           "name": "Aroma Di Napoli",
           "roast": "Dark",
-          "price": "39.00",
+          "price": "40.00",
           "badge": "Reserve"
         },
         {
           "name": "Geisha Esmeralda",
           "roast": "Medium",
-          "price": "125.00",
+          "price": "175.00",
           "origin": "Panama",
           "badge": "Rare"
         },
         {
           "name": "Hawaiian Fancy Kona",
           "roast": "Medium",
-          "price": "80.00",
+          "price": "90.00",
           "origin": "Hawaii",
           "badge": "Reserve"
         },
@@ -604,13 +589,6 @@
           "roast": "Medium",
           "price": "695.00",
           "origin": "Indonesia/Civet",
-          "badge": "Rare"
-        },
-        {
-          "name": "Le Eseralda Geisha",
-          "roast": "Medium",
-          "price": "175.00",
-          "origin": "Panama",
           "badge": "Rare"
         }
       ]
