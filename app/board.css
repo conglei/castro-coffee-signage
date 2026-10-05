@@ -357,6 +357,13 @@
   .paged .brow .bn { flex: 0 1 auto; font-size: calc(47px * var(--fs-item,1)); white-space: nowrap; }
   .paged .brow .bp { font-size: calc(47px * var(--fs-item,1)); }
   .paged .brow .leader { flex: 1 1 auto; border-bottom: 3px dotted var(--paper-line); margin: 0 22px 13px; min-width: 28px; }
+  /* 3-column pages (all 120 coffees on 3 pages): same text size, tighter rows; long names wrap */
+  .page-grid.cols-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 90px; align-items: start; }
+  .page-grid .pcol .glabel:first-child { margin-top: 0; }
+  .page-grid.cols-3 .glabel:not(:first-child) { margin-top: 22px; }
+  .cols-3.paged .brow { padding: 11px 0; gap: 18px; }
+  .cols-3.paged .brow .bn { white-space: normal; }
+  .cols-3.paged .brow .leader { margin: 0 14px 13px; }
 
   /* showcase page (Rare & Reserve) */
   .showcase { flex: 1 1 auto; display: flex; flex-direction: column; justify-content: center; gap: 6px; }

@@ -4,7 +4,7 @@
 // Ported from the design handoff (beans-app.jsx). Auto-rotating "pages", one
 // category shown large at a time. Final tweak values baked in; Tweaks panel removed.
 
-import { createContext, Fragment, useContext, useEffect, useRef, useState, type CSSProperties } from "react";
+import { createContext, useContext, useEffect, useRef, useState, type CSSProperties } from "react";
 import { BEANS, BEANS_MENU, type Bean, type BeansMenu } from "../lib/beansData";
 import { BrandArcs, Clock, boardVars, useFitToViewport, TYPE_PAIRS, type Theme } from "./boardChrome";
 import { useTweaks } from "../lib/useTweaks";
@@ -28,7 +28,7 @@ interface BeansTheme extends Theme {
 // Final look chosen during the design session — used as the default/reset state.
 const BEANS_DEFAULTS: BeansTheme = {
   view: "paged",
-  pageSecs: 10,
+  pageSecs: 15,
   autoRotate: true,
   typePair: "playfair",
   accent: "#95652E",
@@ -55,14 +55,12 @@ interface Page {
   showcase?: boolean;
 }
 
-// Rotating pages — one category group shown large at a time (balanced counts).
+// Rotating pages — three category groups per page, three columns each, so all
+// 120 coffees fit on 3 pages (balanced counts: 40 / 36 / 44).
 const PAGES: Page[] = [
-  { title: "Blends & Organic", sub: "House, espresso & certified organic", groups: ["House & Medium Blends", "Espresso Blends", "Organic & Fair Trade"], cols: 2 },
-  { title: "Single-Origin", sub: "From the world's great coffee regions", groups: ["Single-Origin"], cols: 2 },
-  { title: "Dark Roasts", sub: "Bold, smoky & full-bodied", groups: ["Dark Roasts"], cols: 2 },
-  { title: "Flavored", sub: "Naturally infused favorites", groups: ["Flavored"], cols: 2 },
-  { title: "Decaf", sub: "Swiss Water process · all the flavor", groups: ["Decaf"], cols: 2 },
-  { title: "Rare & Reserve", sub: "Limited lots · special order", groups: ["Rare & Reserve"], showcase: true },
+  { title: "Blends & Single-Origin", sub: "House blends, world origins & rare reserves", groups: ["House & Medium Blends", "Single-Origin", "Rare & Reserve"], cols: 3 },
+  { title: "Dark, Espresso & Organic", sub: "Bold roasts, espresso & certified organic", groups: ["Dark Roasts", "Espresso Blends", "Organic & Fair Trade"], cols: 3 },
+  { title: "Flavored & Decaf", sub: "Naturally infused favorites · Swiss Water decaf", groups: ["Flavored", "Decaf"], cols: 3 },
 ];
 
 // Full-list (dense) layout columns.
@@ -120,21 +118,49 @@ function PageContent({ page }: { page: Page }) {
       </div>
     );
   }
-  const multi = page.groups.length > 1;
+  const columns = splitColumns(page.groups.map((g) => ({ group: g, items: beans[g] || [] })), page.cols || 2);
   return (
     <div className="page-body">
-      <div className="page-grid paged" style={{ columnCount: page.cols || 2 }}>
-        {page.groups.map((g) => (
-          <Fragment key={g}>
-            {multi && <div className="glabel">{g}</div>}
-            {(beans[g] || []).map((it, i) => (
-              <BeanRow key={g + i} item={it} lead />
-            ))}
-          </Fragment>
+      <div className={"page-grid paged cols-" + (page.cols || 2)}>
+        {columns.map((col, ci) => (
+          <div className="pcol" key={ci}>
+            {col.map((e, i) =>
+              e.item ? (
+                <BeanRow key={i} item={{ ...e.item, name: e.item.name.replace(" ( Special Order )", "") }} featured={e.group === "Rare & Reserve"} lead />
+              ) : (
+                <div className="glabel" key={i}>{e.group}</div>
+              )
+            )}
+          </div>
         ))}
       </div>
     </div>
   );
+}
+
+// Split a page's sections into columns of about equal height. A section heading
+// always stays with at least 3 of its coffees, and a section that continues in
+// the next column repeats its heading there (so every column is self-explanatory).
+type Entry = { group: string; item?: Bean };
+function splitColumns(groups: { group: string; items: Bean[] }[], cols: number): Entry[][] {
+  const flat: Entry[] = groups.flatMap(({ group, items }) => [{ group }, ...items.map((item) => ({ group, item }))]);
+  const target = Math.ceil(flat.length / cols);
+  const out: Entry[][] = [[]];
+  for (let i = 0; i < flat.length; i++) {
+    const e = flat[i];
+    let col = out[out.length - 1];
+    // Start a new column when this one is full, or when a heading would be left
+    // with fewer than 3 coffees under it.
+    const full = col.length >= target;
+    const orphan = !e.item && col.length + 4 > target && col.length > 0;
+    if ((full || orphan) && out.length < cols) {
+      col = [];
+      out.push(col);
+      if (e.item) col.push({ group: e.group }); // repeat the heading
+    }
+    col.push(e);
+  }
+  return out;
 }
 
 function PagedView({ idx }: { idx: number }) {
