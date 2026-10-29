@@ -655,6 +655,11 @@
           "name": "Decaf Triple Dark",
           "roast": "Dark",
           "price": "15.95"
+        },
+        {
+          "name": "Decaf Amaretto",
+          "roast": "Medium",
+          "price": "15.95"
         }
       ]
     },
