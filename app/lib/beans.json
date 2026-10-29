@@ -541,19 +541,19 @@
         {
           "name": "Decaf Colombian",
           "roast": "Medium",
-          "price": "15.50",
+          "price": "15.95",
           "origin": "Colombia"
         },
         {
           "name": "Decaf Costa Rica",
           "roast": "Medium",
-          "price": "15.50",
+          "price": "15.95",
           "origin": "Costa Rica"
         },
         {
           "name": "Decaf French Roast",
           "roast": "Dark",
-          "price": "15.50"
+          "price": "15.95"
         },
         {
           "name": "Decaf Guatemala",
@@ -564,13 +564,13 @@
         {
           "name": "Decaf Moka Java",
           "roast": "Medium",
-          "price": "15.50",
+          "price": "15.95",
           "origin": "Ethiopia"
         },
         {
           "name": "Decaf Royale",
           "roast": "Medium",
-          "price": "15.50"
+          "price": "15.95"
         },
         {
           "name": "Decaf Vienna",
@@ -590,12 +590,12 @@
         {
           "name": "Decaf European Royale",
           "roast": "Dark",
-          "price": "15.50"
+          "price": "15.95"
         },
         {
           "name": "Decaf Italian Roast",
           "roast": "Dark",
-          "price": "15.50"
+          "price": "15.95"
         },
         {
           "name": "Decaf Morning Rush",
@@ -605,7 +605,7 @@
         {
           "name": "Decaf Sweet Italian",
           "roast": "Medium",
-          "price": "15.50"
+          "price": "15.95"
         },
         {
           "name": "Fair Trade Organic Decaf (SWP) Italian Roast",
